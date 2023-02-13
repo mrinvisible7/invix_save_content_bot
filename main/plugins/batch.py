@@ -73,8 +73,8 @@ async def _batch(event):
                 return await conv.send_message("Cannot wait more longer for your response!")
             try:
                 value = int(_range.text)
-                if value > 10000:
-                    return await conv.send_message("You can only get upto 10000 files in a single batch.")
+                if value > 100000:
+                    return await conv.send_message("You can only get upto 100000 files in a single batch.")
             except ValueError:
                 return await conv.send_message("Range must be an integer!")
             for i in range(value):
@@ -110,48 +110,56 @@ async def run_batch(userbot, client, sender, countdown, link):
             timer = 3
         elif i < 100 and i > 50:
             timer = 5
-        elif i < 1250 and i > 1000:
-            timer = 15
-        elif i < 1500 and i > 1250:
+        elif i < 250 and i > 100:
+            timer = 10
+        elif i < 500 and i > 250:
+            timer = 12
+        elif i < 750 and i > 500:
+            timer = 14
+        elif i < 1000 and i > 750:
+            timer = 16
+        elif i < 2000 and i > 1000:
             timer = 20
-        elif i < 2000 and i > 1500:
-            timer = 25
-        elif i < 2500 and i > 2000:
+        elif i < 3000 and i > 2000:
+            timer = 22
+        elif i < 4000 and i > 3000:
+            timer = 24
+        elif i < 5000 and i > 4000:
+            timer = 26
+        elif i < 6000 and i > 5000:
+            timer = 28
+        elif i < 7000 and i > 6000:
             timer = 30
-        elif i < 3000 and i > 2500:
-            timer = 35
-        elif i < 3500 and i > 3000:
-            timer = 40
-        elif i < 4000 and i > 3500:
-            timer = 45
-        elif i < 4500 and i > 4000:
-            timer = 50
-        elif i < 5000 and i > 4500:
-            timer = 55
-        elif i < 5500 and i > 5000:
+        elif i < 8000 and i > 7000:
+            timer = 32
+        elif i < 9000 and i > 8000:
+            timer = 34
+        elif i < 10000 and i > 9000:
+            timer = 36
+        elif i < 15000 and i > 10000:
             timer = 60
-        elif i < 6000:
-            timer = 65
-        elif i < 6500:
+        elif i < 20000:
+            timer = 62
+        elif i < 30000:
+            timer = 64
+        elif i < 40000:
+            timer = 66
+        elif i < 50000:
+            timer = 68
+        elif i < 60000: 
             timer = 70
-        elif i < 7000:
-            timer = 75
-        elif i < 7500:
+        elif i < 70000: 
+            timer = 72
+        elif i < 80000:
+            timer = 74
+        elif i < 90000: 
+            timer = 76
+        elif i < 100000: 
             timer = 80
-        elif i < 8000: 
-            timer = 85
-        elif i < 8500: 
-            timer = 90
-        elif i < 9000:
-            timer = 95
-        elif i < 9500: 
-            timer = 100
-        elif i < 10000: 
-            timer = 105
         
         
         if 't.me/c/' not in link:
-            timer = 2 if i < 25 else 3
+            timer = 2 if i < 500 else 3
         try: 
             count_down = f"**Batch process ongoing.**\n\nProcess completed: {i+1}"
             #a =ids[i]
