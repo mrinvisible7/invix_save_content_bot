@@ -48,7 +48,7 @@ async def start(event):
                       buttons=[
                               [Button.inline("SET THUMB.", data="set"),
                                Button.inline("REM THUMB.", data="rem")],
-                              [Button.inline("👨🏻‍💻Owner👨🏻‍💻", data="@mister_invisiblebot")]         
+                              [Button.url("👨🏻‍💻Owner👨🏻‍💻", url="@mister_invisiblebot")]         
                               ])                             
                               
     '''
