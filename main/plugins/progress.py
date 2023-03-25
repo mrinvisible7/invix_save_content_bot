@@ -48,8 +48,8 @@ async def progress_for_pyrogram(
                     UN_FINISHED_PROGRESS_STR
                     for _ in range(10 - math.floor(percentage / 10))
                 ]
-            )
-         )
+            ),
+        )  
 
         tmp = progress + "GROSSS: {0} of {1}\n\nSpeed: {2}/s\n\nETA: {3}\n".format(
             humanbytes(current),
