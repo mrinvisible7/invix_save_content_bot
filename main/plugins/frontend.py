@@ -3,7 +3,7 @@
 import time, os
 
 import logging
-from .. import bot as Drone
+from .. import bot as Invix
 from .. import userbot, Bot
 from .. import FORCESUB as fs
 from main.plugins.pyroplug import get_msg
@@ -21,7 +21,7 @@ logger = logging.getLogger(__name__)
 logging.getLogger("pyrogram").setLevel(logging.INFO)
 logging.getLogger("telethon").setLevel(logging.INFO)
 
-ft = f"To use this bot you've to join @{fs}./n/n@mr_invisible_bots"
+ft = f"To use this bot you've to join @{fs}./n/Also join @mr_invisible_bots"
 
 message = "Send me the message link you want to start saving from, as a reply to this message."
           
@@ -31,7 +31,7 @@ user=[]
 
  
 
-@Drone.on(events.NewMessage(incoming=True, func=lambda e: e.is_private))
+@Invix.on(events.NewMessage(incoming=True, func=lambda e: e.is_private))
 async def clone(event):
     logging.info(event)
     file_name = ''
@@ -95,11 +95,11 @@ async def clone(event):
                 m = msg_id
                 await get_msg(userbot, Bot, event.sender_id, edit.id, link, m, file_name)
         except FloodWait as fw:
-            await Drone.send_message(event.sender_id, f'Try again after {fw.value} seconds due to floodwait from telegram.')
+            await Invix.send_message(event.sender_id, f'Try again after {fw.value} seconds due to floodwait from telegram.')
             await edit.delete()
         except Exception as e:
             logging.info(e)
-            await Drone.send_message(event.sender_id, f"An error occurred during cloning of `{link}`\n\n**Error:** {str(e)}")
+            await Invix.send_message(event.sender_id, f"An error occurred during cloning of `{link}`\n\n**Error:** {str(e)}")
             await edit.delete()
         ind = user.index(f'{int(event.sender_id)}')
         user.pop(int(ind))
