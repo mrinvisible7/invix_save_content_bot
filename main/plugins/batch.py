@@ -1,4 +1,4 @@
-#Tg:mister_invisible/save_restricted
+#Tg:@mister_invisiblebot/save_restricted
 #Github. com/mrinvisible7
 
 """
@@ -8,7 +8,7 @@ Plugin for both public & private channels!
 import logging
 import time, os, asyncio
 
-from .. import bot as Drone
+from .. import bot as Invix
 from .. import userbot, Bot, AUTH, SUDO_USERS
 #from .. import FORCESUB as fs
 from main.plugins.pyroplug import check, get_bulk_msg
@@ -36,7 +36,7 @@ ids = []
     msg = await userbot.get_messages(chat, ids=id)
     await event.client.send_message(event.chat_id, msg) 
 '''   
-@Drone.on(events.NewMessage(incoming=True, from_users=SUDO_USERS, pattern='/batch'))
+@Invix.on(events.NewMessage(incoming=True, from_users=SUDO_USERS, pattern='/batch'))
 async def _batch(event):
     '''
     #if not event.is_private:
@@ -51,7 +51,7 @@ async def _batch(event):
     s = False
     if f'{event.sender_id}' in batch:
         return await event.reply("You've already started one batch, wait for it to complete you dumbfuck owner!")
-    async with Drone.conversation(event.chat_id) as conv: 
+    async with Invix.conversation(event.chat_id) as conv: 
         if not s:
             await conv.send_message("Send me the message link you want to start saving from, as a reply to this message.", buttons=Button.force_reply())
             try:
@@ -73,7 +73,7 @@ async def _batch(event):
                 return await conv.send_message("Cannot wait more longer for your response!")
             try:
                 value = int(_range.text)
-                if value > 100000:
+                if value > 1000000:
                     return await conv.send_message("You can only get upto 100000 files in a single batch.")
             except ValueError:
                 return await conv.send_message("Range must be an integer!")
@@ -97,69 +97,19 @@ async def _batch(event):
             ids.clear()
             batch.clear()
 
-@Drone.on(events.callbackquery.CallbackQuery(data="cancel"))
+@Invix.on(events.callbackquery.CallbackQuery(data="cancel"))
 async def cancel(event):
     ids.clear()
     
 async def run_batch(userbot, client, sender, countdown, link):
     for i in range(len(ids)):
-        timer = 60
-        if i < 25:
+        timer = 6
+        if i < 250:
             timer = 2
-        elif i < 50 and i > 25:
-            timer = 3
-        elif i < 100 and i > 50:
-            timer = 5
-        elif i < 250 and i > 100:
-            timer = 10
-        elif i < 500 and i > 250:
-            timer = 12
-        elif i < 750 and i > 500:
-            timer = 14
-        elif i < 1000 and i > 750:
-            timer = 16
-        elif i < 2000 and i > 1000:
-            timer = 20
-        elif i < 3000 and i > 2000:
-            timer = 22
-        elif i < 4000 and i > 3000:
-            timer = 24
-        elif i < 5000 and i > 4000:
-            timer = 26
-        elif i < 6000 and i > 5000:
-            timer = 28
-        elif i < 7000 and i > 6000:
-            timer = 30
-        elif i < 8000 and i > 7000:
-            timer = 32
-        elif i < 9000 and i > 8000:
-            timer = 34
-        elif i < 10000 and i > 9000:
-            timer = 36
-        elif i < 15000 and i > 10000:
-            timer = 60
-        elif i < 20000:
-            timer = 62
-        elif i < 30000:
-            timer = 64
-        elif i < 40000:
-            timer = 66
-        elif i < 50000:
-            timer = 68
-        elif i < 60000: 
-            timer = 70
-        elif i < 70000: 
-            timer = 72
-        elif i < 80000:
-            timer = 74
-        elif i < 90000: 
-            timer = 76
-        elif i < 100000: 
-            timer = 80
         
         
         if 't.me/c/' not in link:
-            timer = 2 if i < 500 else 3
+            timer = 1 if i < 500 else 2
         try: 
             count_down = f"**Batch process ongoing.**\n\nProcess completed: {i+1}"
             #a =ids[i]
