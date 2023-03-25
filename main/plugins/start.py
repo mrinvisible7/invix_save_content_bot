@@ -47,8 +47,10 @@ async def start(event):
     await event.reply(text, 
                       buttons=[
                               [Button.inline("SET THUMB.", data="set"),
-                               Button.inline("REM THUMB.", data="rem")]
-                              ])
+                               Button.inline("REM THUMB.", data="rem")],
+                              [Button.inline("👨🏻‍💻Owner👨🏻‍💻", data="@mister_invisiblebot")]         
+                              ])                             
+                              
     '''
     await event.reply(text, 
                       buttons=[
